@@ -1,0 +1,56 @@
+<div *ngIf="artist" class="artist-box p-4">
+	<div class="" id="artist-head-card">
+		<div class="image">
+			<img src="{{url + 'get-image-artist/' + artist.image}}" *ngIf="artist.image && artist.image !='null' " />
+		</div>
+		<div class="data">
+			<h1>{{artist.name}}</h1>
+			<p class="description">{{artist.description}}</p>
+			<a *ngIf="identity.role == 'ROLE_ADMIN' " [routerLink]="['/crear-album', artist._id]" class="btn btn-secondary btn-spotify-add">
+				Añadir album
+			</a>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="gallery-albums p-3" *ngIf="albums">
+		<div class="col-lg-12">
+			<ul class="row albums-list">
+				<li *ngFor="let album of albums" class="col-lg-3 col-md-6 col-sm-12 album-item">
+					 <div class="album-image">
+						<img *ngIf="album.image!='null'" src="{{url + 'get-image-album/'+ album.image}}" />
+            <img  *ngIf="album.image=='null'" src="{{url + 'get-image-artist/album_photo_default.jpg'}}" />
+					</div>
+					<div class="album-name">
+						<p>
+							<a [routerLink]="['/album', album._id]">
+								{{album.title}}
+							</a>
+              -
+							<a [routerLink]="['/artista', album.artist._id]">
+								{{album.artist.name}}
+							</a>
+
+						</p>
+						<div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN' ">
+							<a [routerLink]="['/editar-album', album._id]" class="btn btn-sm btn-success btn-spotymusic">
+								<i class="bi bi-pencil-square"></i> Editar
+							</a>
+							<a (click)="onDeleteConfirm(album._id)" class="btn btn-sm btn-danger btn-spotymusic" >
+								<i class="bi bi-trash"></i> Borrar
+							</a>
+						</div>
+					</div>
+					<div class="seguro2" *ngIf="confirmado == album._id">
+						<a (click)="onDeleteAlbum(album._id)" class="btn btn-sm btn-success btn-spotymusic">
+							<i class="bi bi-trash"></i> Eliminar
+						</a>
+						<a (click)="onCancelAlbum()" class="btn btn-sm btn-danger btn-spotymusic">
+							<i class="bi bi-x-square"></i> Cancelar
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</div>

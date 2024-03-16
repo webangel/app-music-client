@@ -1,0 +1,391 @@
+<nav
+  *ngIf="identity"
+  class="navbar navbar-expand-lg navbar-dark navigation-movil display-movil"
+>
+  <h1 class="head-title">
+    <a [routerLink]="['/']" class="link_logo">
+      <i class="bi bi-music-note-beamed"></i>
+      <img class="logo-scalar" src="../assets/image/logo-scalar2.2.png" alt="logo" />
+      &nbsp;{{ title }}
+    </a>
+  </h1>
+  <ul class="navbar-nav display-movil-xs">
+    <li class="nav-item">
+      <a class="nav-link" href="#" role="button">
+        <i class="bi bi-user" id="identity_name">
+          {{ identity.name }}
+        </i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [routerLink]="['/mis-datos']"
+        [routerLinkActive]="['actived']"
+      >
+        <i class="bi bi-cog">Mis datos</i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a (click)="logout()" class="btn-logout nav-link">
+        <i class="bi bi-times-circle">Salir</i>
+      </a>
+    </li>
+  </ul>
+  <button
+    class="btn btn-dark menuMovil"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#staticBackdrop"
+    aria-controls="staticBackdrop"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div
+    class="offcanvas offcanvas-start text-bg-dark"
+    data-bs-backdrop="static"
+    tabindex="-1"
+    id="staticBackdrop"
+    aria-labelledby="staticBackdropLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">
+        <a class="navbar-brand link_logo" [routerLink]="['/']">
+          <i class="bi bi-music-note-beamed"></i>
+            <img class="logo-scalar" src="../assets/image/logo-scalar2.2.png" alt="logo" />
+            &nbsp;{{ title }}
+        </a
+        >
+      </h5>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 d-flex justify-content-end">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['/buscar-artista']"
+              [routerLinkActive]="['actived']"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            >
+              <i class="bi bi-search"></i>
+              Buscar
+            </a>
+          </li>
+          <li class="nav-item home-active">
+            <a
+              class="nav-link"
+              [routerLink]="['/artistas', 1]"
+              [routerLinkActive]="['actived']"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            >
+              <i class="bi bi-star"></i>
+              Artistas
+            </a>
+          </li>
+          <li class="nav-item home-active">
+            <a
+              class="nav-link"
+              [routerLink]="['/albums-list', 1]"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            >
+              <i class="bi bi-book"></i>
+              Albums
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav display-web-xs">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span id="identity_name">
+                {{ identity.name }}
+              </span>
+            </a>
+            <div class="dropdown-menu right" aria-labelledby="navbarDropdown">
+              <a
+                class="dropdown-item"
+                [routerLink]="['/mis-datos']"
+                [routerLinkActive]="['actived']"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <i class="bi bi-gear-fill"></i>
+                Mis datos
+              </a>
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item btn-logout"
+                (click)="logout()"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <i class="bi bi-escape"></i>
+                Salir
+              </a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <img
+              class="img-responsive img-circle"
+              id="image-logged"
+              src="{{ url + 'get-image-user/' + identity.image }}"
+              style="width: 25px"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div *ngIf="identity" class="row w-100 h-100 m-0">
+  <div class="navigation col-lg-2 display-web">
+    <div style="background: #1c1c1f; height: 100vh">
+      <div class="col-lg-12">
+        <h1 class="head-title">
+          <a [routerLink]="['/']" class="link_logo">
+            <i class="bi bi-music-note-beamed"></i>
+            <img class="logo-scalar" src="../assets/image/logo-scalar2.2.png" alt="logo" />
+            &nbsp;{{ title }}
+          </a>
+        </h1>
+        <nav id="navigation">
+          <a
+            class="nav-link"
+            [routerLink]="['/buscar-artista']"
+            [routerLinkActive]="['actived']"
+          >
+            <i class="bi bi-search"></i> Buscar
+          </a>
+          <a [routerLink]="['/artistas', 1]" [routerLinkActive]="['actived']">
+            <i class="bi bi-star"></i>
+            Artistas
+          </a>
+          <a class="nav-link" [routerLink]="['/albums-list', 1]">
+            <i class="bi bi-book"></i>
+            Albums
+          </a>
+        </nav>
+        <nav id="user_logged">
+          <div class="user-image">
+            <img
+              class="img-responsive img-circle"
+              id="image-logged"
+              src="{{ url + 'get-image-user/' + identity.image }}"
+            />
+          </div>
+          <span id="identity_name">
+            {{ identity.name }}
+          </span>
+          <a [routerLink]="['/mis-datos']" [routerLinkActive]="['actived']">
+            <i class="bi bi-gear-fill"></i>
+            Mis datos
+          </a>
+          <a (click)="logout()" class="btn-logout">
+            <i class="bi bi-escape"></i>
+            Salir
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="central col-lg-10 pb-5 p-0">
+    <div class="w-100">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="clearfix"></div>
+    <div class="pos-f-t fixed-bottom repro">
+      <div
+        class="offcanvas offcanvas-bottom bg-dark text-bg-dark repro-movil"
+        tabindex="-1"
+        id="offcanvasBottom"
+        aria-labelledby="offcanvasBottomLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title link_logo" id="offcanvasBottomLabel">
+            <i class="bi bi-music-note-beamed"></i>
+            <img class="logo-scalar" src="../assets/image/logo-scalar2.2.png" alt="logo" />
+            &nbsp;{{ title }}
+          </h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body small">
+          <player class="player"></player>
+        </div>
+      </div>
+      <button
+        class="btn-ico-repro"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasBottom"
+        aria-controls="offcanvasBottom"
+      >
+        <img
+          class="repro-ico"
+          src="../assets/image/repro-ico.png"
+          alt="icono reproductor"
+        />
+      </button>
+    </div>
+    <!-- <div class="row">
+				<player class="player col-lg-12 display-web" *ngIf="identity"></player>
+			</div> -->
+  </div>
+</div>
+<div class="w-100 h-100 login-register-content" *ngIf="!identity">
+  <div class="container h-100">
+    <div class="row justify-content-md-center align-items-center h-100 m-0">
+      <div class="col-lg-6">
+        <img class="w-25" src="../assets/image/logo-scalar2.2.png" alt="logo">
+        <ul class="nav nav-tabs row justify-content-md-center align-items-center" id="myTab" role="tablist">
+          <li class="nav-item col-lg-4 col" role="presentation">
+            <button class="nav-link w-100 active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true"><i class="bi bi-person-fill"></i></button>
+          </li>
+          <li class="nav-item col-lg-4 col" role="presentation">
+            <button class="nav-link w-100" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-tab-pane" type="button" role="tab" aria-controls="register-tab-pane" aria-selected="false"><i class="bi bi-person-plus-fill"></i></button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">
+            <div class="row justify-content-md-center pt-5">
+              <div *ngIf="errorMessage">
+                <div class="alert alert-info">
+                  <strong>Error</strong>{{ errorMessage }}
+                </div>
+              </div>
+              <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7">
+                <p class="text-white">
+                  <label>Correo electrónico</label>
+                  <input
+                    type="email"
+                    #email="ngModel"
+                    name="email"
+                    [(ngModel)]="user.email"
+                    class="form-control"
+                    required
+                  />
+                  <span class="bg-dark p-1 mt-1 d-block text-center rounded" *ngIf="!email.valid && email.touched">
+                    El email es obligatorio
+                  </span>
+                </p>
+                <p  class="text-white">
+                  <label>Contraseña</label>
+                  <input
+                    type="password"
+                    #password="ngModel"
+                    name="password"
+                    [(ngModel)]="user.password"
+                    class="form-control"
+                    required
+                  />
+                  <span class="bg-dark p-1 mt-1 d-block text-center rounded" *ngIf="!password.valid && password.touched">
+                    El password es obligatorio
+                  </span>
+                </p>
+                <div class="d-grid gap-2">
+                  <input type="submit" value="Entrar" class="btn btn-dark" />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="register-tab-pane" role="tabpanel" aria-labelledby="register-tab" tabindex="0">
+            <div class="row justify-content-md-center pt-5">
+              <div *ngIf="alertRegister">
+                <div class="alert alert-info">
+                  {{ alertRegister }}
+                </div>
+              </div>
+              <form
+                #registerForm="ngForm"
+                (ngSubmit)="onSubmitRegister()"
+                class="col-md-8"
+              >
+                <p class="text-white">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    #name="ngModel"
+                    name="name"
+                    [(ngModel)]="user_register.name"
+                    required
+                  />
+                  <span class="bg-dark p-1 mt-1 d-block text-center rounded" *ngIf="!name.valid && name.touched">
+                    El campo nombre es obligatorio
+                  </span>
+                </p>
+                <p class="text-white">
+                  <label>Apellidos</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    #surname="ngModel"
+                    name="surname"
+                    [(ngModel)]="user_register.surname"
+                    required
+                  />
+                  <span class="bg-dark p-1 mt-1 d-block text-center rounded" *ngIf="!surname.valid && surname.touched">
+                    El campo apellidos es obligatorio
+                  </span>
+                </p>
+                <p class="text-white">
+                  <label>Correo electrónico</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    #email="ngModel"
+                    name="email"
+                    [(ngModel)]="user_register.email"
+                    required
+                  />
+                  <span class="bg-dark p-1 mt-1 d-block text-center rounded" *ngIf="!email.valid && email.touched">
+                    El campo correo electrónico es obligatorio
+                  </span>
+                </p>
+                <p class="text-white">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    #password="ngModel"
+                    name="password"
+                    [(ngModel)]="user_register.password"
+                    required
+                  />
+                  <span class="bg-dark p-1 mt-1 d-block text-center rounded" *ngIf="!password.valid && password.touched">
+                    El campo password es obligatorio
+                  </span>
+                </p>
+                <div class="d-grid gap-2">
+                  <input type="submit" value="Registrar" class="btn btn-dark" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

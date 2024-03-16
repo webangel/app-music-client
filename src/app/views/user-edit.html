@@ -1,0 +1,60 @@
+<div class="p-4">
+  <div class="col-lg-12"  *ngIf="identity">
+		<div class="row justify-content-md-center">
+      <div class="col-lg-4">
+        <h2 class="title-form">{{title}}</h2>
+        <div *ngIf="alertMessage">
+          <div class="alert alert-info">
+            {{alertMessage}}
+          </div>
+        </div>
+      </div>
+    </div>
+		<form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()" class="content-form-style">
+      <div class="row justify-content-md-center">
+        <div class="col-lg-3">
+          <div class="image-for-edit d-flex" *ngIf="user.image && user.image != 'null'">
+            <img class="img-form-user" src="{{url + 'get-image-user/' + user.image}}" />
+          </div>
+          <p>
+            <label>Sube tu foto:</label>
+            <input type="file" placeholder="Subir Imagen..." name="" (change)="fileChangeEvent($event)" />
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <p>
+            <label>Nombre</label>
+            <input type="text" class="form-control" #name="ngModel" name="name"  [(ngModel)]="user.name" required />
+            <span *ngIf="!name.valid && name.touched">
+              El campo nombre es obligatorio
+            </span>
+          </p>
+          <p>
+            <label>Apellidos</label>
+            <input type="text" class="form-control" #surname="ngModel" name="surname" [(ngModel)]="user.surname" required />
+            <span *ngIf="!surname.valid && surname.touched">
+              El campo apellidos es obligatorio
+            </span>
+          </p>
+          <p>
+            <label>Correo electrónico</label>
+            <input type="text" class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email" required />
+            <span *ngIf="!email.valid && email.touched">
+              El campo correo electrónico es obligatorio
+            </span>
+          </p>
+          <p>
+            <label>Password</label>
+            <input type="password" class="form-control" #password="ngModel" name="password" [(ngModel)]="user.password" required />
+            <span *ngIf="!password.valid && password.touched">
+              El campo password es obligatorio
+            </span>
+          </p>
+          <div class="d-grid gap-2">
+            <input type="submit" value="Actualizar" class="btn btn-dark" />
+          </div>
+        </div>
+      </div>
+		</form>
+	</div>
+</div>

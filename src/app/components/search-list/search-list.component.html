@@ -1,0 +1,51 @@
+
+<div *ngIf="busqueda.length > 0" class="pt-3">
+  <div class="row">
+    <div class="head-page text-center">
+      <h4>Resultados de: {{nombre}}</h4>
+    </div>
+    <!-- <div class="col-lg-12">
+      <ul class="pagination d-flex justify-content-end">
+        <li><a class="btn btn-dark" [routerLink]="['/albums-list', prev_page]" >&laquo;</a></li>
+        <li><a class="btn btn-dark" [routerLink]="['/albums-list', next_page]" >&raquo;</a></li>
+      </ul>
+    </div> -->
+    <div class="clearfix"></div>
+    <div class="col-lg-12">
+        <ul class="row albums-list">
+          <li *ngFor="let bus of busqueda" class="col-lg-3 col-md-6 col-sm-12 artist-item">
+            <div class="artist-image">
+              <img src="{{url + 'get-image-artist/'+ bus.image}}" />
+            </div>
+            <div class="artist-name">
+              <p>
+                <a [routerLink]="['/artista', bus._id]">
+                  {{bus.name}}
+                </a>
+              </p>
+              <!-- <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN' ">
+                <a [routerLink]="['/editar-album', album._id]" class="btn btn-sm btn-success btn-spotymusic">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a (click)="onDeleteConfirm(album._id)" class="btn btn-sm btn-danger btn-spotymusic" >
+                  <i class="bi bi-trash"></i> Borrar
+                </a>
+              </div> -->
+            </div>
+            <!-- <div class="seguro2" *ngIf="confirmado == album._id">
+              <a (click)="onDeleteAlbum(album._id)" class="btn btn-sm btn-success btn-spotymusic">
+                <i class="bi bi-trash"></i> Eliminar
+              </a>
+              <a (click)="onCancelAlbum()" class="btn btn-sm btn-danger btn-spotymusic">
+                <i class="bi bi-x-square"></i> Cancelar
+              </a>
+            </div> -->
+          </li>
+        </ul>
+    </div>
+  </div>
+</div>
+<div class="text-center pt-3" *ngIf="busqueda.length==0">
+  <h5>No se encuentro resultados de: {{nombre}}</h5>
+</div>
+
